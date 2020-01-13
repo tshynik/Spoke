@@ -911,6 +911,7 @@ const rootMutations = {
       { loaders, user }
     ) => {
       const contact = await loaders.campaignContact.load(campaignContactId);
+      console.log('TrackcreateOptOut contact', contact, optOut);
       await assignmentOrAdminRoleRequired(
         user,
         organizationId,
@@ -919,7 +920,7 @@ const rootMutations = {
 
       const { assignmentId, cell, reason } = optOut;
       const campaign = await loaders.campaign.load(contact.campaign_id);
-
+      console.log('TrackcreateOptOut campaign', contact, campaign);
       await cacheableData.optOut.save({
         cell,
         campaignContactId,
@@ -927,9 +928,9 @@ const rootMutations = {
         assignmentId,
         campaign
       });
-
+      console.log('TrackcreateOptOut optout', campaignContactId, contact);
       loaders.campaignContact.clear(campaignContactId.toString());
-
+      console.log('TrackcreateOptOut cleared');
       return loaders.campaignContact.load(campaignContactId);
     },
     bulkSendMessages: async (_, { assignmentId }, { loaders, user }) => {

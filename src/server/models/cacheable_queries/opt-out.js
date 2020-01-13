@@ -78,6 +78,7 @@ const optOutCache = {
     return dbResult.length > 0;
   },
   save: async ({ cell, campaignContactId, campaign, assignmentId, reason }) => {
+    console.log('TrackcreateOptOut saveCache', campaign, assignmentId, campaignContactId);
     const organizationId = campaign.organization_id;
     if (r.redis) {
       const hashKey = orgCacheKey(organizationId);
@@ -86,6 +87,7 @@ const optOutCache = {
         await r.redis.saddAsync(hashKey, cell);
       }
     }
+    console.log('TrackcreateOptOut saveDb', campaign, assignmentId, organizationId);
     // database
     await new OptOut({
       assignment_id: assignmentId,
