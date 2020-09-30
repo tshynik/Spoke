@@ -64,7 +64,8 @@ const rowSizeList = props =>
     10,
     30,
     50,
-    100
+    100,
+    1000
   ];
 
 const rowSizeMenuItems = props =>
