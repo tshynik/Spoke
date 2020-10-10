@@ -337,6 +337,7 @@ export class IncomingMessageList extends Component {
           showCheckboxes
           page={displayPage}
           rowSize={limit}
+          rowSizeList={[10,30,50,100,1000]}
           count={total}
           onNextPageClick={this.handleNextPageClick}
           onPreviousPageClick={this.handlePreviousPageClick}
